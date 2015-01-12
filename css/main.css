@@ -45,6 +45,6 @@ body {
   background-image: url('../images/hadouken.gif');
   width: 156px; 
   height: 90px;
-  display: none;
+  /* display: none; */
   float: left;
 }
