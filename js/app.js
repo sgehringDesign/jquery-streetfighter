@@ -8,55 +8,70 @@ function playHadouken() {
   $('#hadouken-sound')[0].play();
 }
 
-function resetRyu() {
-	$('.ryu-still').hide();
-	$('.ryu-ready').hide();
-	$('.ryu-throwing').hide();
-	$('.ryu-cool').hide();
-}
-
 
 $(document).ready(function() {
 
+
+  // RYU EVENTS
 	$('.ryu').mouseenter(function() {
-    	resetRyu();
+    $('.ryu-action').hide();
 		$('.ryu-ready').show();
-  	})
-  	.mouseleave(function() {
-		resetRyu();
-    	$('.ryu-still').show();
-  	})
-  	.mousedown(function() {
-    	playHadouken(); 
-    	resetRyu();
-    	$('.ryu-throwing').show();
-    	$('.hadouken').show();
-    	$('.hadouken').finish().show()
-    	.animate(
-    		{'left': '300px'}, 
-    		500,
-    		function() {
+    $('.ryu').data("state", "ready");
+		console.log("enter");
+  })
+  .mouseleave(function() {
+		$('.ryu-action').hide();
+    $('.ryu-still').show();
+    $('.ryu').data("state", "still");
+    console.log("leave");
+  })
+  .mousedown(function() {
+    playHadouken(); 
+    $('.ryu-action').hide();
+    $('.ryu-throwing').show();
+    $('.hadouken').show();
+    $('.hadouken').finish().show()
+    .animate(
+    	{'left': '300px'}, 
+    	500,
+    	function() {
     			$(this).hide();
     			$(this).css('left', '-200px');
-    		}
-    	);
+    	}
+    );
 	})
-  	.mouseup(function() {
-    	resetRyu();
-  		$('.ryu-ready').show();
-  	})
+  .mouseup(function() {
+    $('.ryu-action').hide();
+  	$('.ryu-ready').show();
+    console.log("up");
+  })
   	
-  	$(document).keydown(function(e) {
-  		if(e.keyCode === 88) {
-  			resetRyu();
-    		$('.ryu-cool').show();
-  		}
+
+  // KEY EVENTS
+  $(document).keydown(function(e) {
+  	if(e.keyCode === 88) {
+  		$('.ryu-action').hide();
+    	$('.ryu-cool').show();
+    	console.log("x key down");
+  	}
 	})
 	.keyup(function(e) {
+
+    console.log("x key up");
+
 		if(e.keyCode === 88) {
-    		resetRyu();
-    		$('.ryu-still').show();
-  		}
+
+    	$('.ryu-action').hide();
+      
+      if($('.ryu').data("state") == "ready") {
+        $('.ryu-ready').show();
+        return;
+      }
+    	$('.ryu-still').show();
+  	}
+    
 	});
+
+
 });
 
