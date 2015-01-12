@@ -3,6 +3,9 @@ body {
 	background:#000;
 }
 
+* {
+  outline: red 1px solid;
+}
 
 .main {
 	background: #fff;
