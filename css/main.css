@@ -12,6 +12,10 @@ body {
 	min-height: 500px;
 }
 
+.hadouken, .ryu-ready, .ryu-still, .ryu-throwing {
+  background-repeat: no-repeat;
+}
+
 
 .ryu-ready, .ryu-still, .ryu-throwing {
   width: 659px;
