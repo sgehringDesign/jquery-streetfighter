@@ -22,6 +22,8 @@ body {
   width: 156px; 
   height: 90px;
   display: block; 
+  top: 0px;
+  left: 0px;
   float: left;
   position: relative;
 }
